@@ -6,10 +6,10 @@ Widgets for parameters and attributes
 
 # Third party modules.
 from qtpy.QtGui import \
-    QRegExpValidator, QValidator
+    QRegularExpressionValidator, QValidator
 from qtpy.QtWidgets import \
     QWidget, QLineEdit, QPushButton, QVBoxLayout, QFormLayout
-from qtpy.QtCore import QRegExp, Signal
+from qtpy.QtCore import QRegularExpression, Signal
 
 import six
 
@@ -46,8 +46,8 @@ class _ParameterAttributeLineEdit(QLineEdit, _ParameterAttributeMixin):
         _ParameterAttributeMixin.setParameterAttribute(self, attribute)
 
         if attribute.is_required():
-            pattern = QRegExp(r"^(?!\s*$).+")
-            validator = QRegExpValidator(pattern)
+            pattern = QRegularExpression(r"^(?!\s*$).+")
+            validator = QRegularExpressionValidator(pattern)
             self.setValidator(validator)
 
         self.textChanged.connect(self._onTextChanged)
